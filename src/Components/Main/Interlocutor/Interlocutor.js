@@ -1,11 +1,12 @@
 import React from "react"
-import {Div } from "./styledInterlocutor"
+import {Div, H4} from "./styledInterlocutor"
 
 function Interlocutor (props) {
 
     return(
         <Div>
-            <section>{props.currSender}</section>
+            <H4>{props.currSender}</H4>
+            <p>{props.message}</p>
         </Div>
     )
 }

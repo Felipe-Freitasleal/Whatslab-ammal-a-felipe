@@ -4,12 +4,18 @@ export const Div = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-top: 1px solid gray;
+    /* border-top: 1px solid gray; */
+    background-color: #f1f4f7;
     height: 10vh;
     width: 100%;
     max-height: 100%;
 `
 
-export const Img = styled.img`
-    border-radius: 100%;
+
+export const Button = styled.button`
+   
+`
+
+export const Input = styled.input`
+   
 `

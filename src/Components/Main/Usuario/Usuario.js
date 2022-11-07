@@ -1,11 +1,12 @@
 import React from "react"
-import {Div} from "./styledusuario"
+import {Div, H4} from "./styledusuario"
 
 function Usuario (props) {
 
     return(
         <Div>
-            <section>{props.currSender}</section>
+            <H4>{props.currSender}</H4>
+            <p>{props.message}</p>
         </Div>
     )
 }
