@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Div =styled.div`
-    border: 4px solid grey;
+    /* border: 4px solid grey; */
     border-radius: 15px;
     margin: 0 auto;
     display: flex;

@@ -1,12 +1,12 @@
 import React from "react"
-import {Div} from "./styledFooter"
+import {Div, Button, Input} from "./styledFooter"
 
-function Footer () {
+function Footer (props) {
 
     return(
         <Div>
-            <input type="text"  placeholder="escrever mensagem"/>
-            <button>Enviar</button>
+            <Input type="text" placeholder="escrever mensagem" onKeyDown={props.onChangeMessage}/>
+            <Button>Enviar</Button>
         </Div>
     )
 }

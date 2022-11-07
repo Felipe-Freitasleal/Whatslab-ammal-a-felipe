@@ -15,10 +15,20 @@ function App() {
     "Cicrano",
     "Beltrano"
   ])
+  const [message, setMessage] = useState ("")
 
   //Mudar o remetente atual
-  const onChangeSender = (e) =>{
-    setCurrSender(e.target.value)
+  const onChangeSender = (event) =>{
+    setCurrSender(event.target.value)
+  }
+
+  // const [arrayDeMensagens, setArrayDeMensagens] = useState [{}]
+
+  const onChangeMessage = (event) => {
+    if(event.key === "Enter"){
+      
+      setMessage(event.target.value)
+    }
   }
 
   return (
@@ -30,8 +40,11 @@ function App() {
       />
       <Main
         currSender={currSender} 
+        message={message}
       />
-      <Footer/>
+      <Footer
+        onChangeMessage={onChangeMessage}
+      />
     </Div>
   );
 }
