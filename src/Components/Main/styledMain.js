@@ -10,18 +10,19 @@ export const Div = styled.div`
     max-height: 100%;
     background-color: #f1f4f7;
 `
-export const EstiloUsuario = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
 
-`
 
 export const EstiloInterlocutor = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    border-radius: 15px;
+    padding:16px;
+     
+  
 
+    background-color: darkgray;
+    max-width: 50%;
 `
 
 export const Img = styled.img`

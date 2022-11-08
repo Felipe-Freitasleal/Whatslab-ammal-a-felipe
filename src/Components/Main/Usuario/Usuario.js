@@ -5,8 +5,7 @@ function Usuario (props) {
 
     return(
         <Div>
-            <H4>{props.currSender}</H4>
-            <p>{props.message}</p>
+            <p>{props.arrayDeMensagens.message}</p>
         </Div>
     )
 }
