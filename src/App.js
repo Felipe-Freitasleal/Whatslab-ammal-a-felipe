@@ -15,40 +15,58 @@ function App() {
     "Cicrano",
     "Beltrano"
   ])
-  const [message, setMessage] = useState ("")
 
   //Mudar o remetente atual
   const onChangeSender = (event) =>{
     setCurrSender(event.target.value)
+    
   }
 
+  //Lista primária de mensagens
   const [arrayDeMensagens, setArrayDeMensagens] = useState ([
     {
       id: `Fulano-${Math.ceil(Math.random() * 1000000)}`,
       sender: "Fulano",
-      message:"Hello",
-      create: new Date()
+      message: "mensagem",
+      create: new Date().toLocaleTimeString( "en-US", {hour: "numeric", minute: "numeric",hour12: true})
     },
     {
       id: `Me-${Math.ceil(Math.random() * 1000000)}`,
       sender: "Me",
-      message:"Salve",
-      create: new Date()
+      message: "Algo",
+      create: new Date().toLocaleTimeString( "en-US", {hour: "numeric", minute: "numeric",hour12: true})
     }
   ])
 
-  const onChangeMessage = (event) => {
+  //Adiciona nova mensagems como objeto a partir das informações vindas do footer
+  const onChangeMessage = (event, text, cbclearText) => {
     if(event.key === "Enter"){
-      setMessage(event.target.value)
-      // setArrayDeMensagens(
-      //   {
-      //   id: `Fulano-${Math.ceil(Math.random() * 1000000)}`,
-      //   sender: currSender,
-      //   message:message,
-      //   create: new Date()
-      // }
-      // )
+      const newMessage =
+       {
+        id: `${currSender}-${Math.ceil(Math.random() * 1000000)}`,
+        sender: currSender,
+        message: text,
+        create: new Date().toLocaleTimeString( "en-US", {hour: "numeric", minute: "numeric", hour12: true})
+        }
       
+        const newMessages = [...arrayDeMensagens, newMessage]
+        setArrayDeMensagens(newMessages)
+        cbclearText()
+    }
+  }
+
+  //Exclui a mensagem que foi clicada duas vezes
+  const noDoubleClick = (idMensagem) => {
+    if(window.confirm("Você quer excluir esta mensagem?")){
+      const lsitadeMensagens = [...arrayDeMensagens]
+
+      const indexParaDeletar = lsitadeMensagens.findIndex(
+        (mensagem) => (mensagem.id === idMensagem)
+      )
+    if(indexParaDeletar > -1){
+      lsitadeMensagens.splice(indexParaDeletar, 1)
+      setArrayDeMensagens(lsitadeMensagens)
+    }
     }
   }
 
@@ -61,6 +79,7 @@ function App() {
       />
       <Main
         arrayDeMensagens={arrayDeMensagens}
+        noDoubleClick={noDoubleClick}
       />
       <Footer
         onChangeMessage={onChangeMessage}

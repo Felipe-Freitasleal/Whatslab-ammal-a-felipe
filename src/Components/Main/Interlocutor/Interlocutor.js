@@ -2,11 +2,13 @@ import React from "react"
 import {Div, H4} from "./styledInterlocutor"
 
 function Interlocutor (props) {
- const {pessoas, mensagens} = props
+    const {mensagem, noDoubleClick} = props
+
     return(
-        <Div>
-            <H4>{pessoas}</H4>
-            <p>{mensagens}</p>
+        <Div onDoubleClick={() => noDoubleClick(mensagem.id)}>
+            <H4>{mensagem.sender}</H4>
+            <p>{mensagem.message}</p>
+            <span>{mensagem.create}</span>
         </Div>
     )
 }

@@ -1,11 +1,13 @@
 import React from "react"
-import {Div, H4} from "./styledusuario"
+import {Div} from "./styledusuario"
 
 function Usuario (props) {
+    const {mensagem, noDoubleClick} = props
 
     return(
-        <Div>
-            <p>{props.arrayDeMensagens.message}</p>
+        <Div onDoubleClick={() => noDoubleClick(mensagem.id)}>
+            <p>{mensagem.message}</p>
+            <span>{mensagem.create}</span>
         </Div>
     )
 }
