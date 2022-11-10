@@ -15,19 +15,58 @@ function App() {
     "Cicrano",
     "Beltrano"
   ])
-  const [message, setMessage] = useState ("")
 
   //Mudar o remetente atual
   const onChangeSender = (event) =>{
     setCurrSender(event.target.value)
+    
   }
 
-  // const [arrayDeMensagens, setArrayDeMensagens] = useState [{}]
+  //Lista primária de mensagens
+  const [arrayDeMensagens, setArrayDeMensagens] = useState ([
+    {
+      id: `Fulano-${Math.ceil(Math.random() * 1000000)}`,
+      sender: "Fulano",
+      message: "mensagem",
+      create: new Date().toLocaleTimeString( "en-US", {hour: "numeric", minute: "numeric",hour12: true})
+    },
+    {
+      id: `Me-${Math.ceil(Math.random() * 1000000)}`,
+      sender: "Me",
+      message: "Algo",
+      create: new Date().toLocaleTimeString( "en-US", {hour: "numeric", minute: "numeric",hour12: true})
+    }
+  ])
 
-  const onChangeMessage = (event) => {
+  //Adiciona nova mensagems como objeto a partir das informações vindas do footer
+  const onChangeMessage = (event, text, cbclearText) => {
     if(event.key === "Enter"){
+      const newMessage =
+       {
+        id: `${currSender}-${Math.ceil(Math.random() * 1000000)}`,
+        sender: currSender,
+        message: text,
+        create: new Date().toLocaleTimeString( "en-US", {hour: "numeric", minute: "numeric", hour12: true})
+        }
       
-      setMessage(event.target.value)
+        const newMessages = [...arrayDeMensagens, newMessage]
+        setArrayDeMensagens(newMessages)
+        cbclearText()
+    }
+  }
+
+  //Exclui a mensagem que foi clicada duas vezes
+  const noDoubleClick = (idMensagem) => {
+    if(window.confirm("Você quer excluir esta mensagem?")){
+      const lsitadeMensagens = [...arrayDeMensagens]
+
+      const indexParaDeletar = lsitadeMensagens.findIndex(
+        (mensagem) => (mensagem.id === idMensagem)
+      )
+    if(indexParaDeletar > -1){
+      lsitadeMensagens.splice(indexParaDeletar, 1)
+      setArrayDeMensagens(lsitadeMensagens)
+    }
     }
   }
 
@@ -39,8 +78,8 @@ function App() {
         senders={senders}
       />
       <Main
-        currSender={currSender} 
-        message={message}
+        arrayDeMensagens={arrayDeMensagens}
+        noDoubleClick={noDoubleClick}
       />
       <Footer
         onChangeMessage={onChangeMessage}
